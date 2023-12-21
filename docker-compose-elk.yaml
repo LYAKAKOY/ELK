@@ -6,7 +6,7 @@ services:
     restart: always
     volumes:
 #      - certs:/usr/share/elasticsearch/config/certs
-      - elastic_data:/usr/share/elasticsearch/
+      - elastic_data:/usr/share/elasticsearch
     environment:
       xpack.security.enabled: false
       discovery.type: single-node
