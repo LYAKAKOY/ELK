@@ -153,6 +153,7 @@ services:
      retries: 120
 
  logstash01:
+   container_name: logstash01
    depends_on:
      es01:
        condition: service_healthy
