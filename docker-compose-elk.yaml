@@ -8,7 +8,6 @@ services:
 #      - certs:/usr/share/elasticsearch/config/certs
       - elastic_data:/usr/share/elasticsearch/data/
     environment:
-      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
       xpack.security.enabled: false
       discovery.type: single-node
     ports:
@@ -20,8 +19,6 @@ services:
     image: docker.elastic.co/logstash/logstash:7.5.2
     container_name: logstash
     restart: always
-    environment:
-      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
     volumes:
       - /var/log/syslog:/usr/share/logstash/ingest_data
       - ./logstash.conf:/usr/share/logstash/pipline/logstash.conf:ro
