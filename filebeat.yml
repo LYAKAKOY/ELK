@@ -6,7 +6,7 @@ filebeat.inputs:
 
 
 output.logstash:
- hosts: ${LOGSTASH_HOSTS}:5044
+ hosts: ${LOGSTASH_HOSTS}
  username: ${ELASTIC_USER}
  password: ${ELASTIC_PASSWORD}
  ssl.enabled: true
