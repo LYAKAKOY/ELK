@@ -28,10 +28,11 @@ services:
     environment:
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
     volumes:
-    - ./logstash/:/logstash_dir
-    command: logstash -f /logstash_dir/logstash.conf
+      - /var/log/syslog/:/usr/share/logstash/ingest_data/
+      - ./logstash.conf:/usr/share/logstash/pipline/logstash.conf:ro
+    command: logstash -f /usr/share/logstash/pipline/logstash.conf
     ports:
-    - '9600:9600'
+      - '9600:9600'
     depends_on:
       Elasticsearch:
         condition: service_healthy
@@ -45,7 +46,7 @@ services:
     environment:
       - ELASTICSEARCH_URL=http://elasticsearch:9200
     ports:
-    - '5601:5601'
+      - '5601:5601'
     depends_on:
       Elasticsearch:
         condition: service_healthy
