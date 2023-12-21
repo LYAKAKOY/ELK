@@ -2,7 +2,7 @@ filebeat.inputs:
 - type: filestream
   id: default-filestream
   paths:
-   - var/log/my_log/
+   - ingest_data/*
 
 
 output.logstash:
