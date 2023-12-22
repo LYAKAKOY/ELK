@@ -23,6 +23,8 @@ services:
 
   es01:
     image: elasticsearch:${STACK_VERSION}
+    labels:
+      co.elastic.logs/module: elasticsearch
     volumes:
       - esdata01:/usr/share/elasticsearch/data
     ports:
@@ -45,6 +47,8 @@ services:
       es01:
         condition: service_healthy
     image: kibana:${STACK_VERSION}
+    labels:
+      co.elastic.logs/module: kibana
     volumes:
       - kibanadata:/usr/share/kibana/data
     ports:
@@ -67,6 +71,8 @@ services:
       kibana:
         condition: service_healthy
     image: logstash:${STACK_VERSION}
+    labels:
+      co.elastic.logs/module: logstash
     user: root
     volumes:
       - logstashdata01:/usr/share/logstash/data
@@ -82,7 +88,7 @@ services:
     depends_on:
       es01:
         condition: service_healthy
-    image: docker.elastic.co/beats/filebeat:${STACK_VERSION}
+    image: elastic/filebeat:${STACK_VERSION}
     user: root
     volumes:
       - filebeatdata01:/usr/share/filebeat/data
