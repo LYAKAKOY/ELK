@@ -15,8 +15,6 @@ services:
 
   es01:
     image: elasticsearch:${STACK_VERSION}
-    labels:
-      co.elastic.logs/module: elasticsearch
     volumes:
       - esdata01:/usr/share/elasticsearch/data
     ports:
@@ -29,10 +27,6 @@ services:
     environment:
       - xpack.security.enabled=false
       - "discovery.type=single-node"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
 
   kibana:
     depends_on:
