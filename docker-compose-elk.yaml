@@ -35,6 +35,8 @@ services:
     image: kibana:${STACK_VERSION}
     ports:
       - ${KIBANA_PORT}:5601
+    environment:
+      - xpack.security.enabled=false
     healthcheck:
       test:
         [
