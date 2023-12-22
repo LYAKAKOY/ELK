@@ -22,9 +22,6 @@ networks:
 services:
 
   es01:
-    depends_on:
-      setup:
-        condition: service_healthy
     image: elasticsearch:${STACK_VERSION}
     labels:
       co.elastic.logs/module: elasticsearch
